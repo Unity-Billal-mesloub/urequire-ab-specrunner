@@ -8,7 +8,7 @@ Manually configuring `watch`, `mocha` tasks and phantomjs, requirejs/AMD & all t
 
 Here comes urequire-ab-specrunner, an `afterBuild`-er that is build around urequire's (>= v0.7) `afterBuild` facility: with a single declaration and no other configuration, it generates HTML and specs invocations for nodejs & browser and runs them each time you build!
 
-It basically uses uRequire's `bundle` & `build` information already in the urequire config (and the materialized bundle & build) to do its magic. It relies on urequire auto discovery of dependencies paths (using bower and npm behind the scenes) and it automagically generates, configures and runs your specs against the lib using node's `mocha` and [`mocha-phantomjs`](https://github.com/metaskills/mocha-phantomjs) (which are assumed to be installed and working on your machine).
+It basically uses uRequire's `bundle` & `build` information already in the urequire config (and the materialized bundle & build) to do its magic. It relies on urequire auto discovery of dependencies paths (using bower and npm behind the scenes) and it automagically generates, configures and runs your specs against the lib using node's `mocha` and [`mocha-phantomjs`](https://github.com/Unity-Billal-mesloub/mocha-phantomjs) (which are assumed to be installed and working on your machine).
 
 It works perfectly with watching through `grunt-contrib-watch`, which __you dont__ need to configure at all (but is assumed to be locally installed along grunt). The best parts is that because uRequire __really knows__ if your bundle sources __really changed__ (not just some white space or some comments changed in your javascript or coffeescript, but the actual AST) or if a build failed, *urequire-ab-specrunner* wont run the specs until the errors are resolved and only if sources really changed.
 
@@ -34,7 +34,7 @@ and hit `$ grunt libUMD specRun` or `$ grunt libMin specRun` etc - just remember
 
 Add a `watch: true` to either your `lib` or `spec` config (or both), and `watch`-ing starts automatically after the first successful build (it actually auto configures and invokes `grunt-contrib-watch`).
 
-See [urequire-example](https://github.com/anodynos/urequire-example) for a full working example.
+See [urequire-example](https://github.com/Unity-Billal-mesloub/urequire-example) for a full working example.
 
 ## Options
 
@@ -73,7 +73,7 @@ By default a `mocha.setup('bdd')` is called - you can pass a `String` or an `{}`
 
 ### `mochaOptions`
 
-You can pass options to the `mocha` or `mocha-phantomjs` CLI executables - just note that not all options are supported on `mocha-phantomjs` - [check its docs](https://github.com/metaskills/mocha-phantomjs#usage).
+You can pass options to the `mocha` or `mocha-phantomjs` CLI executables - just note that not all options are supported on `mocha-phantomjs` - [check its docs](https://github.com/Unity-Billal-mesloub/mocha-phantomjs#usage).
 
 ##### Example
 ```
@@ -120,37 +120,11 @@ Spawn is preferred cause it taps mocha output (and assertion failures) as its ge
 
 ### `tidy`
 
-If `tidy: truthy` it uses [`htmltidy`](https://github.com/vavere/htmltidy) to beautify the resulted HTML. By default its off.
+If `tidy: truthy` it uses [`htmltidy`](https://github.com/Unity-Billal-mesloub/htmltidy) to beautify the resulted HTML. By default its off.
 
-**Note that htmltidy has a couple of known [breaking issues](https://github.com/vavere/htmltidy/issues/17) especially on x64 linux distros [(spawn ENOENT)](https://github.com/vavere/htmltidy/issues/11) cause its just a nodejs wrapper to an outdated 32bit binary, but [there are workarounds](https://github.com/vavere/htmltidy/issues/11#issuecomment-62376405). Also its author considers it experimental on darwin (Mac).** 
+**Note that htmltidy has a couple of known [breaking issues](https://github.com/Unity-Billal-mesloub/htmltidy/issues) especially on x64 linux distros [(spawn ENOENT)](https://github.com/Unity-Billal-mesloub/htmltidy/issues) cause its just a nodejs wrapper to an outdated 32bit binary, but [there are workarounds](https://github.com/Unity-Billal-mesloub/htmltidy/issues). Also its author considers it experimental on darwin (Mac).** 
 
 ### `debugLevel`
 
 Prints debug info, goes from `0` (default) to `100`.
 
-# License
-
-The MIT License
-
-Copyright (c) 2014 Agelos Pikoulas (agelos.pikoulas@gmail.com)
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
